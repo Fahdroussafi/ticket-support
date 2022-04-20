@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Ticket', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->integer('ticket_id')->unsigned();
+            $table->string('ticket_id');
             $table->string('title');
             $table->string('message');
             $table->string('is_resolved')->default('0');
