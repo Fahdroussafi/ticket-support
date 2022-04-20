@@ -68,10 +68,16 @@ class TicketsController extends Controller
 		return view('tickets.user_tickets', compact('tickets', 'categories'));
 	}
 
-    public function show($id)
-    {
-        //
-    }
+    
+	/* This will retrieve a specific ticket. */
+    
+	public function show($ticket_id) {
+		$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+		$comments = $ticket->comments;
+		$category = $ticket->category;
+
+		return view('tickets.show', compact('ticket', 'category', 'comments'));
+	}
 
  
     public function edit($id)

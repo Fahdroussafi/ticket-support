@@ -34,6 +34,8 @@ Route::group([], function () {
     Route::get('/newticket', [TicketsController::class, 'create'])->middleware(['auth'])->name('newticket');
     Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth']);
     Route::get('/my_tickets', [TicketsController::class, 'userTickets'])->middleware(['auth']);
+    Route::get('/tickets/{ticket_id}', [TicketsController::class, 'show'])->middleware(['auth']);
+
 }
 );
 
