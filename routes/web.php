@@ -25,10 +25,17 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 // show new-ticket page and create new ticket with ticketscontroller
-Route::get('/newticket', [TicketsController::class, 'create'])->middleware(['auth'])->name('newticket');
-Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth']);
+// Route::get('/newticket', [TicketsController::class, 'create'])->middleware(['auth'])->name('newticket');
+// Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth']);
+// Route::get('/my_tickets', [TicketsController::class, 'userTickets'])->middleware(['auth']);
 
-Route::get('/mytickets', [TicketsController::class, 'userTickets'])->middleware(['auth']);
+//groupe routes for tickets
+Route::group([], function () {
+    Route::get('/newticket', [TicketsController::class, 'create'])->middleware(['auth'])->name('newticket');
+    Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth']);
+    Route::get('/my_tickets', [TicketsController::class, 'userTickets'])->middleware(['auth']);
+}
+);
 
 
 

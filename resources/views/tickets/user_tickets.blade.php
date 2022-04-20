@@ -40,9 +40,9 @@
 									</td>
 									<td>
 									@if ($ticket->status === 'Open')
-										<span class="label label-success">{{ $ticket->status }}</span>
+										<span class="label label-success">{{ $ticket->is_resolved }}</span>
 									@else
-										<span class="label label-danger">{{ $ticket->status }}</span>
+										<span class="label label-danger">{{ $ticket->is_resolved }}</span>
 									@endif
 									</td>
 									<td>{{ $ticket->updated_at }}</td>
@@ -51,7 +51,7 @@
 							</tbody>
 						</table>
 
-						{{ $tickets->render() }}
+						{{ $tickets->render() }} <!-- Pagination -->
 					@endif
 				</div>
 			</div>
