@@ -15,7 +15,7 @@
 
 					<div class="ticket-info">
 						<p>{{ $ticket->message }}</p>
-						<p>Categry: {{ $category->name }}</p>
+						<p>Category: {{ $category->name }}</p>
 						<p>
 						@if ($ticket->status === 'Open')
 							Status: <span class="label label-success">{{ $ticket->status }}</span>

@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->integer('user_id');
+            $table->integer('category_id');
             $table->string('ticket_id');
             $table->string('title');
             $table->string('message');
-            $table->string('is_resolved')->default('open');
+            $table->string('is_resolved')->default('open'); // open, closed
             $table->timestamps();
         });
     }

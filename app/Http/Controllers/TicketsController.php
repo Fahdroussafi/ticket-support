@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Category;
@@ -34,7 +33,7 @@ class TicketsController extends Controller
     {
         $categories = Category::all();
 
-        return view('tickets.create', compact('categories')); 
+        return view('tickets.create', compact('categories'));
     }
 
      /* Writes the new ticket to the database. */
@@ -72,7 +71,7 @@ class TicketsController extends Controller
 	/* This will retrieve a specific ticket. */
     
 	public function show($ticket_id) {
-		$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+		$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();    
 		$comments = $ticket->comments;
 		$category = $ticket->category;
 
