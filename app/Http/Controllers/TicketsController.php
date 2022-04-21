@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Category;
 use App\Models\Status;
-use App\Models\Comment;
 
 
 use Illuminate\Support\Facades\Auth;

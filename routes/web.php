@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,11 +36,10 @@ Route::group([], function () {
     Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth']);
     Route::get('/my_tickets', [TicketsController::class, 'userTickets'])->middleware(['auth']);
     Route::get('/tickets/{ticket_id}', [TicketsController::class, 'show'])->middleware(['auth']);
-
 }
 );
-
-
+Route::get('/comment', [CommentsController::class, 'create'])->middleware(['auth']);
+Route::post('/comment', [CommentsController::class, 'store'])->middleware(['auth']);
 
 
 // Route::middleware(['auth','admin'])->name('admin.')->prefix('admin')->group(function(){

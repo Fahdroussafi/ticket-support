@@ -4,7 +4,7 @@
 
 @section('content')
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
+		<div class="col-md-7 col-md-offset-1">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					#{{ $ticket->ticket_id }} - {{ $ticket->title }}
@@ -18,9 +18,9 @@
 						<p>Category: {{ $category->name }}</p>
 						<p>
 						@if ($ticket->status === 'Open')
-							Status: <span class="label label-success">{{ $ticket->status }}</span>
+							Status: <span class="label label-success">{{ $ticket->is_re }}</span>
 						@else
-							Status: <span class="label label-danger">{{ $ticket->status }}</span>
+							Status: <span class="label label-danger">{{ $ticket->is_resolved }}</span>
 						@endif
 						</p>
 						<p>Created on: {{ $ticket->created_at->diffForHumans() }}</p>
@@ -32,8 +32,8 @@
 						@foreach ($comments as $comment)
 						<div class="panel panel-@if($ticket->user->id === $comment->user_id) {{"default"}}@else{{"success"}}@endif">
 							<div class="panel panel-heading">
-								{{ $comment->user->name }}
-								<span class="pull-right">{{ $comment->created_at->format('Y-m-d') }}</span>
+								{{ $comment->user->name }} <!-- This will display the user name -->
+								<span class="pull-right">{{ $comment->created_at->format('d-m-Y H:i') }}</span>
 							</div>
 
 							<div class="panel panel-body">
@@ -53,11 +53,11 @@
 							<div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
 								<textarea rows="10" id="comment" class="form-control" name="comment"></textarea>
 
-								@if ($errors->has('comment'))
+								{{-- @if ($errors->has('comment'))
 									<span class="help-block">
 										<strong>{{ $errors->first('comment') }}</strong>
 									</span>
-								@endif
+								@endif --}}
 							</div>
 
 							<div class="form-group">
