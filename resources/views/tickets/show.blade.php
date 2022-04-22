@@ -11,7 +11,7 @@
 				</div>
 
 				<div class="panel-body">
-					{{-- @include('includes.flash') --}}
+					@include('includes.flash')
 
 					<div class="ticket-info">
 						<p>{{ $ticket->message }}</p>
