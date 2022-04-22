@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ticket_id');
             $table->string('title');
             $table->string('message');
+            // $table->string('status');
             $table->string('is_resolved')->default('open'); // open, closed
             $table->timestamps();
         });

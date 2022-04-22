@@ -53,17 +53,21 @@
 							<div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
 								<textarea rows="10" id="comment" class="form-control" name="comment"></textarea>
 
-								{{-- @if ($errors->has('comment'))
+								@if ($errors->has('comment'))
 									<span class="help-block">
 										<strong>{{ $errors->first('comment') }}</strong>
 									</span>
-								@endif --}}
+								@endif
 							</div>
-
 							<div class="form-group">
+							@if ($ticket->is_resolved === 'open' || (Auth::user()->is_admin === 1))
 								<button type="submit" class="btn btn-primary">Submit</button>
-							</div>
+							@else
+								<button type="submit" class="btn btn-primary"disabled>Submit</button>
+							@endif
+						</div>
 						</form>
+					</div>
 				</div>
 			</div>
 		</div>

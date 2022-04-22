@@ -30,20 +30,22 @@ Route::get('/dashboard', function () {
 // Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth']);
 // Route::get('/my_tickets', [TicketsController::class, 'userTickets'])->middleware(['auth']);
 
-//groupe routes for tickets
+// groupe routes for tickets
 Route::group([], function () {
     Route::get('/newticket', [TicketsController::class, 'create'])->middleware(['auth'])->name('newticket');
     Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth']);
     Route::get('/my_tickets', [TicketsController::class, 'userTickets'])->middleware(['auth']);
     Route::get('/tickets/{ticket_id}', [TicketsController::class, 'show'])->middleware(['auth']);
-}
-);
+});
+
+// comments routes
 Route::get('/comment', [CommentsController::class, 'create'])->middleware(['auth']);
 Route::post('/comment', [CommentsController::class, 'store'])->middleware(['auth']);
 
+// admin routes
+Route::get('/admin/tickets/false', [TicketsController::class, 'index'])->middleware(['auth'])->name('admin.tickets');
+Route::post('/admin/close_ticket/{ticket_id}', [TicketsController::class, 'close'])->middleware(['auth'])->name('admin.close_ticket');
+Route::get('/admin/tickets/true', [TicketsController::class, 'index'])->middleware(['auth'])->name('admin.tickets.open');
 
-// Route::middleware(['auth','admin'])->name('admin.')->prefix('admin')->group(function(){
-//     Route::get('/', [AdminController::class, 'index'])->name('index');
-// });
 
 require __DIR__.'/auth.php';

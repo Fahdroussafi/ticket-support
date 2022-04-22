@@ -23,6 +23,11 @@ class CommentsController extends Controller
 			'user_id'   => Auth::user()->id,
 			'comment'   => $request->input('comment'),
 		]);
+		// when the ticket is closed , the user can no longer comment on the ticket.
+		// if($comment->ticket->is_resolved == 'closed'){
+		// 	return redirect('/tickets/'.$comment->ticket->ticket_id)->with('success', 'You cannot comment on a closed ticket.');
+		// }
+
 
 		// // This will create a log debug message if the User is not the Ticket owner.
 		// if ($comment->ticket->user->id !== Auth::user()->id) {

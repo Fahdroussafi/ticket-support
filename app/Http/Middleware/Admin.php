@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class Admin
 {
@@ -16,9 +18,11 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() || !auth()->user()->is_admin) {
-            abort(403);
-        }
-        return $next($request);
+       // If the user is not an admin, we do not let them access the restircted pages.
+		if(Auth::user()->is_admin !== 1) {
+			return redirect('dashboard');
+		} 
+
+		return $next($request);
     }
 }

@@ -11,6 +11,8 @@ use App\Models\Status;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class TicketsController extends Controller
 {
@@ -50,6 +52,7 @@ class TicketsController extends Controller
         'ticket_id' => Str::random(10), // This is the ticket_id of the newly created ticket.
         'category_id' => $request->input('category'), // This is the category_id of the newly created ticket.
         'message' => $request->input('message'),
+
         ]);
 
         $ticket->save(); // This saves the ticket to the database.
@@ -78,21 +81,34 @@ class TicketsController extends Controller
 	}
 
  
-    public function edit($id)
-    {
-        //
-    }
+   /* This will retrieve all tickets. */
+	public function index($is_resolved = 'false') {
 
-   
-    public function update(Request $request, $id)
-    {
-        //
-    }
+		// If only open tickets are requested, then we will limit our query to only show open tickets.
+		$tickets = Ticket::where('is_resolved', 'Open')->paginate(10);
+		if($is_resolved === 'true') {
+			Log::debug('Open tickets only');
+			$tickets = Ticket::where('is_resolved', 'Open')->paginate(10);
+		} else {
+			Log::debug('All tickets');
+			$tickets = Ticket::paginate(10);
+		}
+		
+		$categories = Category::all();
 
-  
+		return view('tickets.index', compact('tickets', 'categories'));
+	}
 
-    public function destroy($id)
-    {
-        //
-    }
+	public function close($ticket_id) {
+		$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+		$ticket->is_resolved = 'Closed';
+    
+		$ticket->save();
+		// $ticketOwner = $ticket->user;
+
+		// Log::debug('Mail would be sent to ' . $ticketOwner->email . ' that their ticket #' . $ticket_id . ' has been closed.');
+
+		return redirect()->back()->with("status", "The ticket has been closed.");
+	}
 }
+
