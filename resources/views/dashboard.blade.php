@@ -19,6 +19,9 @@
 						</p>
 						<p>
 							Add <a href="{{ url('/admin/add_category') }}">categories</a>
+						<p>
+							See all <a href="{{ url('/admin/users') }}">Users</a>
+						</p>
 						</p>
 					@else
 						<p>
