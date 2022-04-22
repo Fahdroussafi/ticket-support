@@ -1,35 +1,35 @@
 @extends('layouts.app')
 
-@section('title' , 'Open Ticket')
+@section('title' , 'Add Category')
     
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h2>Open Ticket</h2></div>
+                    <div class="panel-heading"><h2>Add Category</h2></div>
 
                     <div class="panel-body">
                         @include('includes.flash')
     
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('newticket') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/add_category') }}">
                             {!! csrf_field() !!}
     
-                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label for="title" class="col-md-4 control-label">Title</label>
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <label for="name" class="col-md-4 control-label">Name</label>
     
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}">
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
     
-                                    @if ($errors->has('title')) <!- This will display the error message if the title field is empty. --->
+                                    @if ($errors->has('name')) <!- This will display the error message if the name field is empty. --->
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('title') }}</strong>
+                                            <strong>{{ $errors->first('name') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                            {{-- <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
                                 <label for="category" class="col-md-4 control-label">Category</label>
 
                                 <div class="col-md-6">
@@ -46,8 +46,8 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
-
+                            </div> --}}
+{{-- 
                             <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
                                 <label for="message" class="col-md-4 control-label">Message</label>
 
@@ -60,12 +60,12 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-btn fa-ticket"></i> Open Ticket
+                                        <i class="fa fa-btn fa-ticket"></i> Add Category
                                     </button>
                                 </div>
                             </div>

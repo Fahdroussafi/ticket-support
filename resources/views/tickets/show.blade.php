@@ -11,8 +11,6 @@
 				</div>
 
 				<div class="panel-body">
-					@include('includes.flash')
-
 					<div class="ticket-info">
 						<p>{{ $ticket->message }}</p>
 						<p>Category: {{ $category->name }}</p>
@@ -60,6 +58,7 @@
 								@endif
 							</div>
 							<div class="form-group">
+								@include('includes.flash')
 							@if ($ticket->is_resolved === 'open' || (Auth::user()->is_admin === 1))
 								<button type="submit" class="btn btn-primary">Submit</button>
 							@else

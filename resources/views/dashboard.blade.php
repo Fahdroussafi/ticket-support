@@ -15,10 +15,10 @@
 
 					@if (Auth::user()->is_admin)
 						<p>
-							See all <a href="{{ url('admin/tickets/false') }}">tickets</a>
+							See all <a href="{{ url('admin/tickets') }}">tickets</a>
 						</p>
 						<p>
-							See only open <a href="{{ url('admin/tickets/true') }}">tickets</a>
+							Add <a href="{{ url('/admin/add_category') }}">categories</a>
 						</p>
 					@else
 						<p>

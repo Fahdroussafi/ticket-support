@@ -1,7 +1,7 @@
 <?php
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,9 +33,9 @@ Route::get('/dashboard', function () {
 // groupe routes for tickets
 Route::group([], function () {
     Route::get('/newticket', [TicketsController::class, 'create'])->middleware(['auth'])->name('newticket');
-    Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth']);
-    Route::get('/my_tickets', [TicketsController::class, 'userTickets'])->middleware(['auth']);
-    Route::get('/tickets/{ticket_id}', [TicketsController::class, 'show'])->middleware(['auth']);
+    Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth'])->name('newticket');
+    Route::get('/my_tickets', [TicketsController::class, 'userTickets'])->middleware(['auth'])->name('my_tickets');
+    Route::get('/tickets/{ticket_id}', [TicketsController::class, 'show'])->middleware(['auth'])->name('ticket');
 });
 
 // comments routes
@@ -43,9 +43,9 @@ Route::get('/comment', [CommentsController::class, 'create'])->middleware(['auth
 Route::post('/comment', [CommentsController::class, 'store'])->middleware(['auth']);
 
 // admin routes
-Route::get('/admin/tickets/false', [TicketsController::class, 'index'])->middleware(['auth'])->name('admin.tickets');
+Route::get('/admin/tickets', [TicketsController::class, 'index'])->middleware(['auth'])->name('admin.tickets');
 Route::post('/admin/close_ticket/{ticket_id}', [TicketsController::class, 'close'])->middleware(['auth'])->name('admin.close_ticket');
-Route::get('/admin/tickets/true', [TicketsController::class, 'index'])->middleware(['auth'])->name('admin.tickets.open');
-
+Route::get('/admin/add_category', [CategoryController::class, 'create'])->middleware(['auth'])->name('admin.categories_add');
+Route::post('/admin/add_category', [CategoryController::class, 'store'])->middleware(['auth'])->name('admin.categories_add');
 
 require __DIR__.'/auth.php';

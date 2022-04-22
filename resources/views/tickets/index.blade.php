@@ -15,6 +15,7 @@
 						<p>There are currently no tickets.</p>
 					@else
 						<table class="table">
+							@include('includes.flash')
 							<thead>
 								<tr>
 									<th>Category</th>

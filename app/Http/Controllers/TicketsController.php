@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Category;
-use App\Models\Status;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +21,6 @@ class TicketsController extends Controller
         $this->middleware('auth');
     }
     
-
     // public function index()
     // {
     //     $tickets = Ticket::paginate(10);
@@ -57,7 +55,7 @@ class TicketsController extends Controller
 
         $ticket->save(); // This saves the ticket to the database.
 
-        return redirect('dashboard')->with('success', 'Ticket created successfully'); // This redirects the user to the index page with a success message.
+        return redirect()->back()->with("status", "A ticket with ID: #$ticket->ticket_id has been opened."); // This redirects the user back to the page they were on.
     }
 
    /* This will retrieve the current user's tickets. */
@@ -82,17 +80,9 @@ class TicketsController extends Controller
 
  
    /* This will retrieve all tickets. */
-	public function index($is_resolved = 'false') {
+	public function index() {
 
-		// If only open tickets are requested, then we will limit our query to only show open tickets.
-		$tickets = Ticket::where('is_resolved', 'Open')->paginate(10);
-		if($is_resolved === 'true') {
-			Log::debug('Open tickets only');
-			$tickets = Ticket::where('is_resolved', 'Open')->paginate(10);
-		} else {
-			Log::debug('All tickets');
-			$tickets = Ticket::paginate(10);
-		}
+		$tickets = Ticket::paginate(10);
 		
 		$categories = Category::all();
 
@@ -100,7 +90,7 @@ class TicketsController extends Controller
 	}
 
 	public function close($ticket_id) {
-		$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+		$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail(); 
 		$ticket->is_resolved = 'Closed';
     
 		$ticket->save();
@@ -108,7 +98,7 @@ class TicketsController extends Controller
 
 		// Log::debug('Mail would be sent to ' . $ticketOwner->email . ' that their ticket #' . $ticket_id . ' has been closed.');
 
-		return redirect()->back()->with("status", "The ticket has been closed.");
+		return redirect()->back()->with("closed", "The ticket has been closed.");
 	}
 }
 
