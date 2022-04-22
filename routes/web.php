@@ -26,11 +26,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// show new-ticket page and create new ticket with ticketscontroller
-// Route::get('/newticket', [TicketsController::class, 'create'])->middleware(['auth'])->name('newticket');
-// Route::post('/newticket', [TicketsController::class, 'store'])->middleware(['auth']);
-// Route::get('/my_tickets', [TicketsController::class, 'userTickets'])->middleware(['auth']);
-
 // groupe routes for tickets
 Route::group([], function () {
     Route::get('/newticket', [TicketsController::class, 'create'])->middleware(['auth'])->name('newticket');
@@ -46,6 +41,7 @@ Route::post('/comment', [CommentsController::class, 'store'])->middleware(['auth
 // admin tickets routes
 Route::get('/admin/tickets', [TicketsController::class, 'index'])->middleware(['auth'])->name('admin.tickets');
 Route::post('/admin/close_ticket/{ticket_id}', [TicketsController::class, 'close'])->middleware(['auth'])->name('admin.close_ticket');
+Route::post('/admin/open_ticket/{ticket_id}', [TicketsController::class, 'open'])->middleware(['auth'])->name('admin.open_ticket');
 
 // admin categories routes
 Route::get('/admin/add_category', [CategoryController::class, 'create'])->middleware(['auth'])->name('admin.categories_add');

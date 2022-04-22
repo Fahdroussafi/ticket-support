@@ -56,6 +56,11 @@
 											{!! csrf_field() !!}
 											<button type="submit" class="btn btn-danger">Close</button>
 										</form>
+										
+										<form action="{{ url('admin/open_ticket/' . $ticket->ticket_id) }}" method="POST">
+											{!! csrf_field() !!}
+											<button type="submit" class="btn btn-success">Open</button>
+										</form>
 									</td>
 								</tr>
 							@endforeach

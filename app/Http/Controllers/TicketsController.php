@@ -99,5 +99,16 @@ class TicketsController extends Controller
 
 		return redirect()->back()->with("closed", "The ticket has been closed.");
 	}
+
+    // open ticket 
+    public function open($ticket_id) {
+        $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+        $ticket->is_resolved = 'Open';
+
+        $ticket->save();
+        return redirect()->back()->with("status", "The ticket has been opened.");
+
+    }
+        
 }
 
