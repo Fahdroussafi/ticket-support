@@ -16,6 +16,7 @@
 					@else
 						<table class="table">
 							@include('includes.flash')
+							
 							<thead>
 								<tr>
 									<th>Category</th>

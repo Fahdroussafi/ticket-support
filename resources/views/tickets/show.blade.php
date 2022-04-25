@@ -59,10 +59,10 @@
 							</div>
 							<div class="form-group">
 								@include('includes.flash')
-							@if ($ticket->is_resolved === 'open' || (Auth::user()->is_admin === 1))
-								<button type="submit" class="btn btn-primary">Submit</button>
+							@if ($ticket->is_resolved === 'Open' || (Auth::user()->is_admin === 1))
+								<button type="submit" class="btn btn-primary">Comment</button>
 							@else
-								<button type="submit" class="btn btn-primary"disabled>Submit</button>
+								<button type="submit" class="btn btn-primary"disabled>Comment</button>
 							@endif
 						</div>
 						</form>

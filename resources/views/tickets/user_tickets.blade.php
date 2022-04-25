@@ -9,7 +9,6 @@
 				<div class="panel-heading">
 					<i class="fa fa-ticket">My Tickets</i>
 				</div>
-
 				<div class="panel-body">
 					@if ($tickets->isEmpty())
 						<p>You have not created any tickets.</p>

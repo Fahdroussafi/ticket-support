@@ -166,7 +166,7 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: inherit; /* 1 */
   color: inherit; /* 1 */
-  margin: 0; /* 2 */
+  margin: 4px; /* 2 */
   padding: 0; /* 3 */
 }
 
