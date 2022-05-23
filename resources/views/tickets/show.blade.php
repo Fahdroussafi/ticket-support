@@ -28,7 +28,7 @@
 					<!-- This will display comments -->
 					<div class="comments">
 						@foreach ($comments as $comment)
-						<div class="panel panel-@if($ticket->user->id === $comment->user_id) {{"default"}}@else{{"success"}}@endif">
+						<div class="panel panel-@if($ticket->user->id === $comment->user_id) {{"default"}}@else{{"success"}}@endif"> <!-- This will display the user's name and the comment -->
 							<div class="panel panel-heading">
 								{{ $comment->user->name }} <!-- This will display the user name -->
 								<span class="pull-right">{{ $comment->created_at->format('d-m-Y H:i') }}</span>
@@ -59,7 +59,7 @@
 							</div>
 							<div class="form-group">
 								@include('includes.flash')
-							@if ($ticket->is_resolved === 'Open' || (Auth::user()->is_admin === 1))
+							@if ($ticket->is_resolved === 'open' || (Auth::user()->is_admin === 1))
 								<button type="submit" class="btn btn-primary">Comment</button>
 							@else
 								<button type="submit" class="btn btn-primary"disabled>Comment</button>

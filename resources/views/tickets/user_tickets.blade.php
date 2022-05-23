@@ -16,10 +16,10 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>Category</th>
+									<th class="text-red-500 text-lg hover:bg-black">Category</th>
 									<th>Title</th>
 									<th>Status</th>
-									<th>Last Updated</th>
+									<th>Last Updated</th> 
 								</tr>
 							</thead>
 							<tbody>
@@ -39,9 +39,9 @@
 									</td>
 									<td>
 									@if ($ticket->status === 'Open')
-										<span class="label label-success">{{ $ticket->is_resolved }}</span>
+										<span class="">{{ $ticket->is_resolved }}</span>
 									@else
-										<span class="label label-danger">{{ $ticket->is_resolved }}</span>
+										<span class="">{{ $ticket->is_resolved }}</span>
 									@endif
 									</td>
 									<td>{{ $ticket->updated_at }}</td>

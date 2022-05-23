@@ -90,7 +90,7 @@ class TicketsController extends Controller
 
 	public function close($ticket_id) {
 		$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail(); 
-		$ticket->is_resolved = 'Closed';
+		$ticket->is_resolved = 'closed';
     
 		$ticket->save();
 		// $ticketOwner = $ticket->user;
@@ -103,7 +103,7 @@ class TicketsController extends Controller
     // open ticket 
     public function open($ticket_id) {
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
-        $ticket->is_resolved = 'Open';
+        $ticket->is_resolved = 'open';
 
         $ticket->save();
         return redirect()->back()->with("status", "The ticket has been opened.");

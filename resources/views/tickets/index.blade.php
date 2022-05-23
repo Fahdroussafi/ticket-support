@@ -23,7 +23,7 @@
 									<th>Title</th>
 									<th>Status</th>
 									<th>Last Updated</th>
-									<th style="text-align:center" colspan="2">Actions</th>
+									<th class="text-align:center" colspan="2">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -42,10 +42,10 @@
 										</a>
 									</td>
 									<td>
-									@if ($ticket->is_resolved === 'Open')
-										<span class="label label-success">{{ $ticket->is_resolved }}</span>
+									@if ($ticket->is_resolved === 'open')
+										<span class=" ">{{ $ticket->is_resolved }}</span>
 									@else
-										<span class="label label-danger">{{ $ticket->is_resolved }}</span>
+										<span class=" text-3xl ">{{ $ticket->is_resolved }}</span>
 									@endif
 									</td>
 									<td>{{ $ticket->updated_at }}</td>

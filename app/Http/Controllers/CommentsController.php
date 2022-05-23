@@ -30,10 +30,10 @@ class CommentsController extends Controller
 
 
 		// // This will create a log debug message if the User is not the Ticket owner.
-		if ($comment->ticket->user->id !== Auth::user()->id) {
+		// if ($comment->ticket->user->id !== Auth::user()->id) {
 
-			Log::debug('Mail would be sent to ' . $comment->ticket->user->email . ' that their ticket has received a reply.');
-		}
+		// 	Log::debug('Mail would be sent to ' . $comment->ticket->user->email . ' that their ticket has received a reply.');
+		// }
 
 		return redirect()->back()->with("comment", "Your comment has be submitted.");
 	}
